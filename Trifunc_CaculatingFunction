@@ -1,79 +1,148 @@
+mysin60=MySin(pi/3);
+mycos60=MyCos(pi/3);
+myarctan1=MyArctan(1);
+mytan60=MyTan(pi/3);
 
-mysin60=mysin(pi/3);
-mycos60=mycos(pi/3);
-myarctan1=myarctan(1);
-mytan1=mytan(pi/3);
-
-function y=mysin(num2)  
+%% sin函数，输入弧度，误差为1e-10，无错误提示。
+function y=MySin(radian)  
     i=1;
-    negation=1;%取反
-    sum=1;
-    index=num2;%指数
-    Factorial=1;%阶乘
-    TaylorExpansion=num2;%泰勒展开式求和
-while myabs(sum)>1e-10
+     %% 取反标志
+    Negation=1;
+     %% 每项多项式取值
+    Polynomial=1;
+     %% 多项式指数
+    Index=radian;
+     %% 多项式阶乘
+    Factorial=1;
+     %% 泰勒展开式求和
+    TaylorExpansion=radian;
+     %% 误差标志
+    ErrorSymbol=1;
     
-         Factorial=Factorial*(i+1)*(i+2);%求阶乘
-         index=index*num2*num2;%求num2的次方
-         negation=-negation;%每次循环取反
-         sum=index/Factorial*negation;
-         TaylorExpansion=TaylorExpansion+sum;
+while ErrorSymbol>0
+         %% 阶乘更新
+         Factorial=Factorial*(i+1)*(i+2);
+         %% 阶乘更新x次方更新
+         Index=Index*radian*radian;
+         %% 多项式正负号更新
+         Negation=-Negation;
+         %% 多项式取值更新
+         Polynomial=Index/Factorial*Negation;
+         %% 泰勒求和
+         TaylorExpansion=TaylorExpansion+Polynomial;
+         
          i=i+2;
+         %% 多项式值取绝对值
+         if Polynomial>0
+            ErrorSymbol=Polynomial;
+         else
+            ErrorSymbol=-Polynomial; 
+         end
+         %% 误差判断
+         if ErrorSymbol>1e-10
+            ErrorSymbol=1;
+         else
+            ErrorSymbol=0; 
+         end
 end
      y=TaylorExpansion;
 end
 
-
-function y=mycos(num2)  
+%% cos函数，输入弧度，误差为1e-10，无错误提示。
+function y=MyCos(radian)  
     i=0;
-    negation=1;%取反
-    sum=1;
-    index=1;%指数
-    Factorial=1;%阶乘
-    TaylorExpansion=1;%泰勒展开式求和
-while myabs(sum)>1e-10
-    
-         Factorial=Factorial*(i+1)*(i+2);%求阶乘
-         index=index*num2*num2;%求num2的次方
-         negation=-negation;%每次循环取反
-         sum=index/Factorial*negation;
-         TaylorExpansion=TaylorExpansion+sum;
+     %% 取反标志
+    Negation=1;
+     %% 每项多项式取值
+    Polynomial=1;
+     %% 多项式指数
+    Index=1;
+     %% 多项式阶乘
+    Factorial=1;
+     %% 泰勒展开式求和
+    TaylorExpansion=1;
+     %% 误差标志
+    ErrorSymbol=1;
+
+while ErrorSymbol>0
+         %% 阶乘更新
+         Factorial=Factorial*(i+1)*(i+2);
+         %% 阶乘更新x次方更新
+         Index=Index*radian*radian;
+         %% 多项式正负号更新
+         Negation=-Negation;
+         %% 多项式取值更新
+         Polynomial=Index/Factorial*Negation;
+         %% 泰勒求和
+         TaylorExpansion=TaylorExpansion+Polynomial;
+         
          i=i+2;
-end
+         %% 多项式值取绝对值
+         if Polynomial>0
+            ErrorSymbol=Polynomial;
+         else
+            ErrorSymbol=-Polynomial; 
+         end
+         %% 误差判断
+         if ErrorSymbol>1e-10
+            ErrorSymbol=1;
+         else
+            ErrorSymbol=0; 
+         end
      y=TaylorExpansion;
 end
+end
 
-function y=myarctan(num2)  
+%% arctan函数，输出角度，误差为1e-10，无错误提示。
+function y=MyArctan(radian)  
     i=1;
-    negation=1;%取反
-    sum=1;
-    index=1;%指数
-    Factorial=1;%阶乘
-    TaylorExpansion=num2;%泰勒展开式求和
-while myabs(sum)>1e-10
-    
-         Factorial=2*i+1;%求阶乘
-         index=index*num2*num2;%求num2的次方
-         negation=-negation;%每次循环取反
-         sum=index/Factorial*negation;
-         TaylorExpansion=TaylorExpansion+sum;
+     %% 取反标志
+    Negation=1;
+     %% 每项多项式取值
+    Polynomial=1;
+     %% 多项式指数
+    Index=1;
+     %% 多项式阶乘
+    Factorial=1;
+     %% 泰勒展开式求和
+    TaylorExpansion=radian;
+     %% 误差标志
+    ErrorSymbol=1;
+
+while ErrorSymbol>0
+         %% 阶乘更新
+         Factorial=2*i+1;
+         %% 阶乘更新x次方更新
+         Index=Index*radian*radian;
+         %% 多项式正负号更新
+         Negation=-Negation;
+         %% 多项式取值更新
+         Polynomial=Index/Factorial*Negation;
+         %% 泰勒求和
+         TaylorExpansion=TaylorExpansion+Polynomial;
+         
          i=i+1;
+         %% 多项式值取绝对值
+         if Polynomial>0
+            ErrorSymbol=Polynomial;
+         else
+            ErrorSymbol=-Polynomial; 
+         end
+         %% 误差判断
+         if ErrorSymbol>1e-10
+            ErrorSymbol=1;
+         else
+            ErrorSymbol=0; 
+         end
 end
+
      y=TaylorExpansion/pi*180;
+     
 end
 
-
-function y=mytan(num2)
+%% arctan函数，输入弧度，误差为1e-10，无错误提示。
+function y=MyTan(radian)
         
-    y=mysin(num2)/mycos(num2);
+    y=MySin(radian)/MyCos(radian);
 end
-    
 
-%下面为求绝对值函数
-function y=myabs(num1)
-if num1>0
-    y=num1;
-else
-    y=-num1; 
-end
-end
