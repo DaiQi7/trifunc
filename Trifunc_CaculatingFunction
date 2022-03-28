@@ -93,7 +93,7 @@ while ErrorSymbol>0
 end
 end
 
-%% arctan函数，输出角度，误差为1e-10，无错误提示。
+%% arctan函数，输出角度，误差为1e-10，无错误提示，取值范围(-1 - 1)。
 function y=MyArctan(radian)  
     i=1;
      %% 取反标志
