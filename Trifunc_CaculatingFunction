@@ -159,13 +159,11 @@ function y=MyArcsin(radian)
      Factorial2N=1;
     
 while ErrorSymbol>0
-        %% 求n的阶乘
         for j=1:i
             FactorialN=FactorialN*j;
         end
-        %% 求2*n的阶乘
         for j=1:2*i
-            Factorial2N=FactorialN*j;
+            Factorial2N=Factorial2N*j;
         end
          %% 阶乘更新
          Factorial=Factorial2N/((2*i+1)*4^i*FactorialN*FactorialN);
@@ -177,11 +175,8 @@ while ErrorSymbol>0
          TaylorExpansion=TaylorExpansion+Polynomial;
          
          i=i+1;
-         
-         %% 复原
          FactorialN=1;
          Factorial2N=1;
-         
          %% 多项式值取绝对值
          if Polynomial>0
             ErrorSymbol=Polynomial;
