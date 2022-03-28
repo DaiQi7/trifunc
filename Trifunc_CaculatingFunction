@@ -101,7 +101,7 @@ function y=MyArctan(radian)
      %% 每项多项式取值
     Polynomial=1;
      %% 多项式指数
-    Index=1;
+    Index=radian;
      %% 多项式阶乘
     Factorial=1;
      %% 泰勒展开式求和
